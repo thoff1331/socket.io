@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
-const socketUrl = "/";
+const socketUrl = "172.31.98.175:8080";
 
 class Layout extends Component {
   constructor(props) {
@@ -20,14 +20,12 @@ class Layout extends Component {
     });
 
     const addMessage = data => {
-      console.log("heyyy");
       console.log(data);
       this.setState({ messages: [...this.state.messages, data] });
       console.log(this.state.messages);
     };
 
     this.sendMessage = ev => {
-      console.log("helloooo");
       ev.preventDefault();
       this.socket.emit("SEND_MESSAGE", {
         author: this.state.username,
