@@ -1,10 +1,18 @@
-const app = require("http").createServer();
-const io = (module.exports.io = require("socket.io")(app));
-const PORT = 3131;
-const socketManager = require("./socketManager");
+var express = require("express");
+var socket = require("socket.io");
 
-io.on("connection", socketManager);
+var app = express();
 
-app.listen(PORT, () => {
-  console.log(`live on ${PORT}`);
+server = app.listen(8080, function() {
+  console.log("server is running on port 8080");
+});
+
+io = socket(server);
+
+io.on("connection", socket => {
+  console.log(socket.id);
+
+  socket.on("SEND_MESSAGE", function(data) {
+    io.emit("RECEIVE_MESSAGE", data);
+  });
 });
