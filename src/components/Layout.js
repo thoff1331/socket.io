@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
-// import { USER_CONNECTED, LOGOUT } from "../events";
 const socketUrl = "172.31.98.175:8080";
 
 class Layout extends Component {
