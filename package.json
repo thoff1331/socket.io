@@ -5,7 +5,6 @@
   "dependencies": {
     "classic": "0.0.2",
     "heroku": "^7.24.4",
-    "pm2": "^3.5.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
@@ -13,10 +12,10 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "start": "npm run react",
-    "dev": "concurrentely 'npm run react' 'npm run server'",
-    "server": "nodemon src/server/index.js",
+    "start": "node src/server/index.js",
+    "dev": "concurrently 'npm run react' 'npm run server'",
     "react": "react-scripts start",
+    "server": "nodemon src/server/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

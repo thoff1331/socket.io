@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
-const socketUrl = "https://socket-practiceio.herokuapp.com/";
+// import { USER_CONNECTED, LOGOUT } from "../events";
+const socketUrl = "172.31.98.176:8080";
 
 class Layout extends Component {
   constructor(props) {
@@ -20,12 +21,14 @@ class Layout extends Component {
     });
 
     const addMessage = data => {
+      console.log("heyyy");
       console.log(data);
       this.setState({ messages: [...this.state.messages, data] });
       console.log(this.state.messages);
     };
 
     this.sendMessage = ev => {
+      console.log("helloooo");
       ev.preventDefault();
       this.socket.emit("SEND_MESSAGE", {
         author: this.state.username,
