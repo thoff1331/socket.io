@@ -1,13 +1,13 @@
-var express = require("express");
-var socket = require("socket.io");
+const express = require("express");
+const socket = require("socket.io");
+const app = express();
+const server = require("http").Server(app);
+const io = (module.exports.io = require("socket.io")(server));
 
-var app = express();
-
-server = app.listen(8080, function() {
+server.listen(8080, function() {
   console.log("server is running on port 8080");
 });
-
-io = socket(server);
+app.use(express.static(__dirname + "../../build"));
 
 io.on("connection", socket => {
   console.log(socket.id);
@@ -15,4 +15,7 @@ io.on("connection", socket => {
   socket.on("SEND_MESSAGE", function(data) {
     io.emit("RECEIVE_MESSAGE", data);
   });
+});
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../build"));
 });

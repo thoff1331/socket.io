@@ -12,7 +12,7 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "start": "npm run react",
+    "start": "concurrently 'npm run react' 'npm run server'",
     "dev": "concurrently 'npm run react' 'npm run server'",
     "react": "react-scripts start",
     "server": "nodemon src/server/index.js",
